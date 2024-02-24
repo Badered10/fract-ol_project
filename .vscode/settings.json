@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "fractol.h": "c",
+        "math.h": "c",
+        "mlx.h": "c",
+        "libft.h": "c",
+        "ios": "c",
+        "__locale": "c",
+        "__string": "c",
+        "string": "c",
+        "string_view": "c"
+    }
+}

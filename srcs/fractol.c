@@ -6,25 +6,84 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/19 16:45:06 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:31:05 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
 
-int main (int argc, char **argv)
+
+/*
+    
+        (1920,1080)    
+     _________________ 
+    |.                |
+    |                 | 
+    |                 |
+    |                 |
+    |                 |
+    |_________________|
+
+          (-2,2)
+     _________________
+    |                 |
+    |     ..          |
+    |   .... ....     |  
+    | ....      .. .  |
+    |     .....       |
+    |_________________|
+*/
+
+int main()  // usage : ./fractol name x y 
 {
-    (void)argc;
-    (void)argv;
-    int x;
-
-    x = 0;
-
     void *mlx;
+    void *window;
+    t_complex z;
+    t_complex c;
+    double x_tmp; 
+    int x;
+    int y;
+    int iter;
+    int color;
+    
+    x = 0;
+    y = 0; 
     mlx = mlx_init();
-    x = *((int *)mlx);
-    printf("mlx --> %d\n",x);
-    // mlx_new_window (mlx, 1920, 1080,"new window");
-    // mlx_loop(mlx);
+    if (!mlx)
+        return MLX_FAIL;
+    window = mlx_new_window(mlx, LENGTH, WIDTH, "Julia Set");
+    if (!window)
+        return NEW_WIN_FAIL;
+    while (y < WIDTH) 
+        {
+            x = 0;
+            while (x < LENGTH)
+            {
+                z.x = 0;
+                z.y = 0;
+                iter = 0;
+                c.x = map(x,-2,2,LENGTH,0);
+                c.y = map(y,-2,2,WIDTH,0);
+                printf("x --> |%d| ---> |%f|\n",x,c.x);
+                while ((z.x * z.x) + (z.y * z.y) <= pow(2,2) && iter < MAX_ITER) 
+                {
+                    x_tmp = pow(z.x,2) - pow(z.y,2);
+                    z.y = 2 * z.x * z.y + c.y;
+                    z.x = x_tmp + c.x;
+                    iter++;
+                }
+               color =  iter / MAX_ITER;
+               if (color)
+               {
+                 color = RED;
+                mlx_pixel_put(mlx, window, x, y, color);
+               }
+                x++;
+            }
+            y++;
+        }
+    mlx_loop(mlx);
+    return 0;
+    
 }
