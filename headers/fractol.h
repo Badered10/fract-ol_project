@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/24 17:29:18 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:32:35 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@
 #define TOMATO 0xFF6347
 #define CHOCOLATE 0xD2691E
 
-double map(double unsacled_num, double new_min, double new_max , double old_max, double old_min)
+double map(double unsacled_num, double new_min, double new_max , double old_max)
 {
-    return ((new_max - new_min) * (unsacled_num - old_min) / (old_max - old_min)
+    return ((new_max - new_min) * (unsacled_num - 0) / (old_max - 0)
             + new_min);
 }
 

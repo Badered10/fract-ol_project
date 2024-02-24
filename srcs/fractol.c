@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/24 17:31:05 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/24 17:32:44 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int main()  // usage : ./fractol name x y
                 z.x = 0;
                 z.y = 0;
                 iter = 0;
-                c.x = map(x,-2,2,LENGTH,0);
-                c.y = map(y,-2,2,WIDTH,0);
+                c.x = map(x,-2,2,LENGTH);
+                c.y = map(y,-2,2,WIDTH);
                 printf("x --> |%d| ---> |%f|\n",x,c.x);
                 while ((z.x * z.x) + (z.y * z.y) <= pow(2,2) && iter < MAX_ITER) 
                 {
