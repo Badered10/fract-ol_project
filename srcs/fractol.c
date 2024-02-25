@@ -6,16 +6,23 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/25 15:47:12 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/25 21:43:36 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
 
-void check_pixel(t_fractal *fractal)
+void	pixel_image_put(t_img *img, int x, int y, int color)
 {
-    printf("y --> |%d|\n",fractal->y);
+	char	*dst;
+
+	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	*(unsigned int*)dst = color;
+}
+
+void check_pixel(t_fractal *fractal , t_img *img)
+{
     fractal->z.x = 0;
     fractal->z.y = 0;
     fractal->iter = 0;
@@ -32,14 +39,13 @@ void check_pixel(t_fractal *fractal)
     if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4)
     {
         fractal->color = map(fractal->iter,BLACK,WHITE,MAX_ITER);
-        mlx_pixel_put(fractal->mlx, fractal->win, fractal->x, fractal->y, 
-                    fractal->color);
+        pixel_image_put(img,fractal->x,fractal->y,fractal->color);
     }
     else
-        mlx_pixel_put(fractal->mlx, fractal->win, fractal->x, fractal->y, WHITE);
+       pixel_image_put(img,fractal->x,fractal->y, DARK_ORCHID);
 }
 
-void render_fractal(t_fractal *fractal)
+void render_fractal(t_fractal *fractal, t_img *img)
 {
     fractal->y = 0;
      while (fractal->y < WIDTH)
@@ -47,7 +53,7 @@ void render_fractal(t_fractal *fractal)
             fractal->x = 0;
             while (fractal->x < LENGTH)
             {
-                check_pixel(fractal);
+                check_pixel(fractal,img);
                 (fractal->x)++;
             }
             (fractal->y)++;
@@ -57,6 +63,7 @@ void render_fractal(t_fractal *fractal)
 int main()  // usage : ./fractol name x y 
 {
     t_fractal fractal;
+    t_img img;
 
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
@@ -64,11 +71,15 @@ int main()  // usage : ./fractol name x y
     fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, "Mandelbrot Set");
     if (!fractal.win)
         return NEW_WIN_FAIL;
-    render_fractal(&fractal);
+    img.img = mlx_new_image(fractal.mlx,WIDTH,LENGTH);
+    img.addr = mlx_get_data_addr(img.img,&img.bpp,&img.line_length,&img.endian);
+    render_fractal(&fractal,&img);
+    mlx_put_image_to_window(fractal.mlx,fractal.win,img.img,0,0);
     mlx_string_put(fractal.mlx, fractal.win, 0, 0,BLACK,"Mandelbrot By baouragh");
     mlx_loop(fractal.mlx);
     return 0;
 }
+
 
 /*
     
