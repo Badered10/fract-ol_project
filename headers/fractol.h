@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/24 17:32:35 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/25 09:51:55 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 */
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
-# define MAX_ITER 37
-# define WIDTH 1080
-# define LENGTH 1920
+# define MAX_ITER 1000
+# define WIDTH 800
+# define LENGTH 800
 
 #define RED 0xFF0000
 #define GREEN 0x00FF00
@@ -54,8 +54,7 @@
 
 double map(double unsacled_num, double new_min, double new_max , double old_max)
 {
-    return ((new_max - new_min) * (unsacled_num - 0) / (old_max - 0)
-            + new_min);
+    return ((new_max - new_min) * unsacled_num / old_max + new_min);
 }
 
 typedef struct s_d
