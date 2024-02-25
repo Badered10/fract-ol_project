@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/25 09:51:55 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/25 10:32:15 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,21 @@ double map(double unsacled_num, double new_min, double new_max , double old_max)
 
 typedef struct s_d
 {
-    //real
     double x;
-    // imagine
     double y;
 }               t_complex;
+
+typedef struct s_fractal
+{
+    void *mlx;
+    void *win;
+    t_complex z;
+    t_complex c;
+    int iter;
+    double x_tmp;
+    int color;
+    int x;
+    int y;
+}               t_fractal;
 
 #endif

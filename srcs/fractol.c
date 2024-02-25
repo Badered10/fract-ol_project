@@ -6,74 +6,66 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/25 10:13:12 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/25 10:53:41 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
 
-void check_pixel(void * mlx, void* window,int x, int y)
+void check_pixel(t_fractal *fractal)
 {
-    t_complex z;
-    t_complex c;
-    int iter;
-    double x_tmp;
-    int color;
-
-    z.x = 0;
-    z.y = 0;
-    iter = 0;
-    c.x = map(x,-2,2,LENGTH);
-    c.y = map(y,-2,2,WIDTH); 
-    while ((z.x * z.x) + (z.y * z.y) <= pow(2,2) && iter < MAX_ITER) 
+    printf("y --> |%d|\n",fractal->y);
+    fractal->z.x = 0;
+    fractal->z.y = 0;
+    fractal->iter = 0;
+    fractal->c.x = map(fractal->x,-2,2,LENGTH);
+    fractal->c.y = map(fractal->y,-2,2,WIDTH);
+    while (pow(fractal->z.x,2) + pow(fractal->z.y,2) <= 4 
+            && fractal->iter < MAX_ITER) 
     {
-        x_tmp = pow(z.x,2) - pow(z.y,2);
-        z.y = 2 * z.x * z.y + c.y;
-        z.x = x_tmp + c.x;
-        iter++;
+        fractal->x_tmp = pow(fractal->z.x,2) - pow(fractal->z.y,2);
+        fractal->z.y = 2 * fractal->z.x * fractal->z.y + fractal->c.y;
+        fractal->z.x = fractal->x_tmp + fractal->c.x;
+        (fractal->iter)++;
     }
-    if ((z.x * z.x) + (z.y * z.y) > pow(2,2))
+    if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4)
     {
-        color = map(iter,BLACK,WHITE,MAX_ITER);
-        mlx_pixel_put(mlx, window, x, y, color);
+        fractal->color = map(fractal->iter,BLACK,WHITE,MAX_ITER);
+        mlx_pixel_put(fractal->mlx, fractal->win, fractal->x, fractal->y, 
+                    fractal->color);
     }
     else
-        mlx_pixel_put(mlx, window, x, y, CYAN);
+        mlx_pixel_put(fractal->mlx, fractal->win, fractal->x, fractal->y, WHITE);
 }
 
-void render_fractal(void *mlx, void *window)
+void render_fractal(t_fractal *fractal)
 {
-    int x;
-    int y;
-
-    x = 0;
-    y = 0;
-     while (y < WIDTH)
+    fractal->y = 0;
+     while (fractal->y < WIDTH)
         {
-            x = 0;
-            while (x < LENGTH)
+            fractal->x = 0;
+            while (fractal->x < LENGTH)
             {
-                check_pixel(mlx, window, x, y);
-                x++;
+                check_pixel(fractal);
+                (fractal->x)++;
             }
-            y++;
+            (fractal->y)++;
         }
 }
 
 int main()  // usage : ./fractol name x y 
 {
-    void *mlx;
-    void *window;
+    t_fractal fractal;
 
-    mlx = mlx_init();
-    if (!mlx)
-        return MLX_FAIL;
-    window = mlx_new_window(mlx, LENGTH, WIDTH, "Julia Set");
-    if (!window)
+    fractal.mlx = mlx_init();
+    if (!fractal.mlx)
+        return (MLX_FAIL);
+    fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, "Julia Set");
+    if (!fractal.win)
         return NEW_WIN_FAIL;
-    render_fractal(mlx, window);
-    mlx_loop(mlx);
+    render_fractal(&fractal);
+    mlx_loop(fractal.mlx);
     return 0;
 }
 
