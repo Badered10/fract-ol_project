@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/25 10:53:41 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/25 15:47:12 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void check_pixel(t_fractal *fractal)
     fractal->z.y = 0;
     fractal->iter = 0;
     fractal->c.x = map(fractal->x,-2,2,LENGTH);
-    fractal->c.y = map(fractal->y,-2,2,WIDTH);
-    while (pow(fractal->z.x,2) + pow(fractal->z.y,2) <= 4 
-            && fractal->iter < MAX_ITER) 
+    fractal->c.y = map(fractal->y,2,-2,WIDTH);
+    while (pow(fractal->z.x,2) + pow(fractal->z.y,2) <= 4
+            && fractal->iter < MAX_ITER)
     {
         fractal->x_tmp = pow(fractal->z.x,2) - pow(fractal->z.y,2);
         fractal->z.y = 2 * fractal->z.x * fractal->z.y + fractal->c.y;
@@ -61,10 +61,11 @@ int main()  // usage : ./fractol name x y
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
         return (MLX_FAIL);
-    fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, "Julia Set");
+    fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, "Mandelbrot Set");
     if (!fractal.win)
         return NEW_WIN_FAIL;
     render_fractal(&fractal);
+    mlx_string_put(fractal.mlx, fractal.win, 0, 0,BLACK,"Mandelbrot By baouragh");
     mlx_loop(fractal.mlx);
     return 0;
 }
