@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 21:28:52 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 22:17:37 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
 # define SYNTAX_ERR 3
-# define MAX_ITER 1000
+# define MAX_ITER 40
 # define WIDTH 800 //y
 # define LENGTH 800// x
 
