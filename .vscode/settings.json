@@ -11,6 +11,7 @@
         "string_view": "c",
         "type_traits": "c",
         "iterator": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "complex": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/25 21:42:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 20:27:39 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 */
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
-# define MAX_ITER 1233
-# define WIDTH 1000 //y
-# define LENGTH 1000// x
+# define SYNTAX_ERR 3
+# define MAX_ITER 1000
+# define WIDTH 800 //y
+# define LENGTH 800// x
 
 #define RED 0xFF0000
 #define GREEN 0x00FF00
@@ -74,8 +75,7 @@ typedef struct s_fractal
     int color;
     int x;
     int y;
-    int width;
-    int height;
+    int check_set;
 }               t_fractal;
 
 typedef struct	s_image_data {
