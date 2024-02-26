@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 13:18:29 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/07 22:43:51 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
 static char	**ft_free(char **res, int words)
 {

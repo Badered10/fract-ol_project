@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:00:26 by baouragh          #+#    #+#             */
-/*   Updated: 2023/11/23 17:12:07 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

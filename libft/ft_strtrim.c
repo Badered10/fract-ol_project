@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 21:29:16 by baouragh          #+#    #+#             */
-/*   Updated: 2023/11/22 16:15:18 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
 static int	ft_same(char s, char c)
 {

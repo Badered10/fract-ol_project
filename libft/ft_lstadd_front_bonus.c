@@ -6,16 +6,16 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 19:54:08 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/15 16:44:44 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new_list)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !new_list)
+	if (!lst || !new)
 		return ;
-	new_list->next = *lst;
-	*lst = new_list;
+	new->next = *lst;
+	*lst = new;
 }

@@ -53,6 +53,8 @@ int main()  // usage : ./fractol name x y
     t_fractal fractal;
     t_img img;
 
+    ft_printf("hello father\n");
+    exit(111);
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
         return (MLX_FAIL);

@@ -6,15 +6,19 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 22:52:01 by baouragh          #+#    #+#             */
-/*   Updated: 2023/11/18 18:06:56 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
+	int	count;
+
+	count = 0;
 	if (fd < 0)
-		return ;
-	write(fd, &c, 1);
+		return (-1);
+	count += write(fd, &c, 1);
+	return (count);
 }

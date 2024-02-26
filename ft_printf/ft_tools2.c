@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 20:30:44 by baouragh          #+#    #+#             */
-/*   Updated: 2023/12/18 23:29:51 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:18:17 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../headers/ft_printf.h"
 
 void	p_x_print(t_f *nes, unsigned int x, char c)
 {

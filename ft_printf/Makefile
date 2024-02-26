@@ -6,7 +6,7 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/29 12:39:30 by baouragh          #+#    #+#              #
-#    Updated: 2023/12/18 20:34:30 by baouragh         ###   ########.fr        #
+#    Updated: 2024/02/26 21:25:55 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
 
-MAKE = make -C libft
+MAKE = make -C ../libft
 
 SRCS = ft_dflags.c ft_cflags.c ft_printf.c \
 		ft_isflag.c ft_uflags.c ft_sflags.c \
@@ -28,7 +28,7 @@ OBJS = $(SRCS:.c=.o)
 
 BONUS_O = $(BONUS_S:.c=.o)
 
-CP = cp libft/libft.a ./$(NAME)
+CP = cp ../libft/libft.a ./$(NAME)
 
 NAME = libftprintf.a
 

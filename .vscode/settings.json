@@ -12,6 +12,7 @@
         "type_traits": "c",
         "iterator": "c",
         "bitset": "c",
-        "complex": "c"
+        "complex": "c",
+        "ft_printf.h": "c"
     }
 }

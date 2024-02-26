@@ -6,31 +6,34 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/17 23:20:30 by baouragh          #+#    #+#             */
-/*   Updated: 2023/11/20 10:02:58 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../headers/libft.h"
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd)
 {
 	long	x;
+	int		count;
 
+	count = 0;
 	x = n;
 	if (fd < 0)
-		return ;
+		return (-1);
 	if (x < 0)
 	{
-		ft_putchar_fd('-', fd);
+		count += 1;
 		x = -x;
 	}
 	if (x > 9)
 	{
-		ft_putnbr_fd(x / 10, fd);
-		ft_putchar_fd(x % 10 + 48, fd);
+		count += ft_putnbr_fd(x / 10, fd);
+		count += ft_putchar_fd(x % 10 + 48, fd);
 	}
 	else if (x >= 0 && x <= 9)
 	{
-		ft_putchar_fd(x + 48, fd);
+		count += ft_putchar_fd(x + 48, fd);
 	}
+	return (count);
 }

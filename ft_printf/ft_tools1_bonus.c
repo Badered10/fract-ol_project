@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 14:13:25 by baouragh          #+#    #+#             */
-/*   Updated: 2023/12/18 21:48:00 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:18:11 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../headers/ft_printf.h"
 
 void	ft_d_initialize(t_f *nes, int x)
 {

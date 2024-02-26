@@ -6,33 +6,37 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:09:19 by baouragh          #+#    #+#              #
-#    Updated: 2024/02/20 16:58:20 by baouragh         ###   ########.fr        #
+#    Updated: 2024/02/26 21:25:02 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MFLAGS = -lmlx -framework OpenGL -framework AppKit
-MAKE = make -C libft
+MAKEL = make -C libft
+MAKEP = make -C ft_printf
 
 SRCS = srcs/fractol.c
 OBJS = $(SRCS:.c=.o)
 
-LIBFT =  libft/libft.a
+LIBS =  ft_printf/libftprintf.a 
 NAME = fractol
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(CFLAGS) $(MFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBS) $(OBJS)
+	$(CC) $(CFLAGS) $(MFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 
-$(LIBFT):
-	$(MAKE)
+$(LIBS):
+	$(MAKEL)
+	$(MAKEP)
 clean:
-	@$(MAKE) clean
+	@$(MAKEL) clean
+	@$(MAKEP) clean
 	@rm -f $(OBJS)
 fclean: clean
-	@$(MAKE) fclean
+	@$(MAKEL) fclean
+	@$(MAKEP) fclean
 	@rm -rf $(NAME)
 re: fclean all
 

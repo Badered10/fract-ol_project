@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:57:29 by baouragh          #+#    #+#             */
-/*   Updated: 2023/12/18 21:47:26 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:17:47 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../headers/ft_printf.h"
 
 static void	ft_assister(char *string, t_f *nes)
 {

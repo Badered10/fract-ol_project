@@ -6,11 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 22:13:54 by baouragh          #+#    #+#             */
-/*   Updated: 2023/12/18 21:48:13 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:18:24 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../headers/ft_printf.h"
 
 static void	ze_print(t_f *nes, unsigned int x)
 {

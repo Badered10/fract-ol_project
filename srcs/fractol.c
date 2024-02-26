@@ -6,42 +6,42 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 20:49:21 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:35:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
 
-void syntax_err(int id)
-{
-    if (!id)
-    {
+// void syntax_err(int id)
+// {
+//     if (!id)
+//     {
         
-    }
+//     }
         
-}
+// }
 
-int check_arg_set(char **argv, int argc, t_fractal fractal)
-{
-    if (ft_strlen(argv[1]) != 1)
-        syntax_err(0); // TO DO !! exit(1);
-    if (argv[1][0] == 'm' || argv[1][0] == 'M')
-    {
-        if (argc != 2) // ./fractal M
-            syntax_err(10);
-        return (10);
-    }
-    else if (argv[1][0] == 'j' || argv[1][0] == 'J')
-    {
-        if (argc != 4) // ./fractal J x y
-            syntax_err(20);
-        check_valid_xy(argv[2],argv[3]); // TO DO
-        return (20);
-    }
-    else if (argv[1][0] == 's' || argv[1][0] == "S") // TO DO Sierpinski Gasket;
-        return (30);
-}
+// int check_arg_set(char **argv, int argc, t_fractal fractal)
+// {
+//     if (ft_strlen(argv[1]) != 1)
+//         syntax_err(0); // TO DO !! exit(1);
+//     if (argv[1][0] == 'm' || argv[1][0] == 'M')
+//     {
+//         if (argc != 2) // ./fractal M
+//             syntax_err(10);
+//         return (10);
+//     }
+//     else if (argv[1][0] == 'j' || argv[1][0] == 'J')
+//     {
+//         if (argc != 4) // ./fractal J x y
+//             syntax_err(20);
+//         check_valid_xy(argv[2],argv[3]); // TO DO
+//         return (20);
+//     }
+//     else if (argv[1][0] == 's' || argv[1][0] == "S") // TO DO Sierpinski Gasket;
+//         return (30);
+// }
 
 void	pixel_image_put(t_img *img, int x, int y, int color)
 {
@@ -90,14 +90,14 @@ void render_fractal(t_fractal *fractal, t_img *img)
         }
 }
  
-int main(int argc, char **argv)  // usage : ./fractol name x y 
+int main()  // usage : ./fractol name x y 
 {
     t_fractal fractal;
     t_img img;
 
-    fractal.check_set = check_arg_set(argv,argc,fractal);
-    if (fractal.check_set < 0)
-        return (SYNTAX_ERR);
+    // fractal.check_set = check_arg_set(argv,argc,fractal);
+    // if (fractal.check_set < 0)
+    //     return (SYNTAX_ERR);
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
         return (MLX_FAIL);

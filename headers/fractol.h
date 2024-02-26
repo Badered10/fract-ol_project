@@ -6,14 +6,14 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 20:27:39 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/26 21:28:52 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include "../headers/libft.h"
+# include "ft_printf.h"
 # include <mlx.h>
 # include <math.h>
 
