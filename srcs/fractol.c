@@ -6,15 +6,14 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 23:00:28 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:07:21 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
- #include <stdlib.h>
 
-void which_fractal(t_fractal *fractal, char **argv)
+static void which_fractal(t_fractal *fractal, char **argv)
 {
     (void)argv;
     if (fractal->check_set == 10)
@@ -28,7 +27,7 @@ void which_fractal(t_fractal *fractal, char **argv)
     {
             fractal->z.x = map(fractal->x,-2,2,LENGTH);
             fractal->z.y = map(fractal->y,2,-2,WIDTH);
-            if (fabs(atof(argv[2])) + fabs(atof(argv[3])) > 4)
+            if (fabs(check_valid_float(argv[2])) + fabs(check_valid_float(argv[3])) > 4)
             {
                 ft_printf("Julia range is (-2,2) !\n");
                 exit(1);
@@ -39,7 +38,7 @@ void which_fractal(t_fractal *fractal, char **argv)
     fractal->iter = 0;
 }
 
-void syntax_err(int id, char *arg )
+static void syntax_err(int id, char *arg )
 {
     if (!ft_strncmp(arg,"help",ft_strlen(arg)))
     {
@@ -55,7 +54,7 @@ void syntax_err(int id, char *arg )
     exit(1);
 }
 
-int check_arg_set(char **argv, int argc)
+static int check_arg_set(char **argv, int argc)
 {
       if (argc < 2)
         syntax_err(0, "help");
@@ -79,7 +78,7 @@ int check_arg_set(char **argv, int argc)
     return (111);
 }
 
-void	pixel_image_put(t_img *img, int x, int y, int color)
+static void	pixel_image_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
@@ -87,7 +86,7 @@ void	pixel_image_put(t_img *img, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-void check_pixel(t_fractal *fractal , t_img *img, char **argv)
+static void check_pixel(t_fractal *fractal , t_img *img, char **argv)
 {
     which_fractal(fractal,argv);
     while (pow(fractal->z.x,2) + pow(fractal->z.y,2) <= 4
@@ -106,7 +105,7 @@ void check_pixel(t_fractal *fractal , t_img *img, char **argv)
     else
        pixel_image_put(img,fractal->x,fractal->y, BLACK);
 }
-void render_fractal(t_fractal *fractal, t_img *img, char **argv)
+static void render_fractal(t_fractal *fractal, t_img *img, char **argv)
 {
     fractal->y = 0;
      while (fractal->y <= WIDTH)

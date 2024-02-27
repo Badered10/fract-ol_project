@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 22:17:37 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 16:50:03 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define NEW_WIN_FAIL 2
 # define SYNTAX_ERR 3
 # define MAX_ITER 40
-# define WIDTH 800 //y
-# define LENGTH 800// x
+# define WIDTH 800
+# define LENGTH 800
 
 #define RED 0xFF0000
 #define GREEN 0x00FF00

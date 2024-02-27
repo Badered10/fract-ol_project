@@ -13,6 +13,15 @@
         "iterator": "c",
         "bitset": "c",
         "complex": "c",
-        "ft_printf.h": "c"
+        "ft_printf.h": "c",
+        "stdarg.h": "c",
+        "stddef.h": "c",
+        "stdlib.h": "c",
+        "unistd.h": "c",
+        "stdint.h": "c",
+        "fcntl.h": "c",
+        "stdio.h": "c",
+        "limits.h": "c",
+        "sstream": "c"
     }
 }
