@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 20:58:23 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:03:44 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static void which_fractal(t_fractal *fractal, char **argv)
     }
     else if (fractal->check_set == 20)
     {
-            fractal->z.x = map(fractal->x,-2,2,LENGTH);
-            fractal->z.y = map(fractal->y,2,-2,WIDTH);
+            fractal->z.x = map(fractal->x,-2,2,LENGTH) * fractal->zoom_value;
+            fractal->z.y = map(fractal->y,2,-2,WIDTH) * fractal->zoom_value;
             if (fabs(check_valid_float(argv[2])) + fabs(check_valid_float(argv[3])) > 4)
             {
                 ft_printf("Julia range is (-2,2) !\n");
@@ -93,7 +93,6 @@ int mouse_hook(int button,int x,int y,t_fractal *param)
         param->zoom_value *= 0.95;
     else if (button == 4)
          param->zoom_value *= 1.05;
-    printf("hello from mouse hook ---> %d,%p,%s \n",button ,&param->img, *param->argv);
     render_fractal(param, param->argv);
     return(1);
 }
