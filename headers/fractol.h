@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 20:18:48 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:05:43 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct s_fractal
     t_complex z;
     t_complex c;
     t_img img;
-    
+
     void *mlx;
     void *win;
     int iter;

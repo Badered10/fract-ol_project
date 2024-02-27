@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 21:03:44 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 21:15:05 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static void which_fractal(t_fractal *fractal, char **argv)
 {
     if (fractal->check_set == 10)
     {
-        fractal->c.x = map(fractal->x,-2,2,LENGTH) * fractal->zoom_value;
-        fractal->c.y = map(fractal->y,2,-2,WIDTH) * fractal->zoom_value;
+        fractal->c.x = (map(fractal->x,-2,2,LENGTH) * fractal->zoom_value) + (fractal->zoom_value * fractal->shift_value);
+        fractal->c.y = (map(fractal->y,2,-2,WIDTH) * fractal->zoom_value);
         fractal->z.x = 0;
         fractal->z.y = 0; 
     }
@@ -93,6 +93,10 @@ int mouse_hook(int button,int x,int y,t_fractal *param)
         param->zoom_value *= 0.95;
     else if (button == 4)
          param->zoom_value *= 1.05;
+    else if (button == 2)
+        param->shift_value -= 0.5;
+    else if (button == 1)
+        param->shift_value += 0.5;
     render_fractal(param, param->argv);
     return(1);
 }
@@ -147,6 +151,7 @@ int main(int argc, char **argv)  // usage : ./fractol name x y
     fractal.argv = argv;
     fractal.argc = argc;
     fractal.zoom_value = 1;
+    fractal.shift_value = 0;
     fractal.check_set = check_arg_set(argv,argc, &fractal);
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
