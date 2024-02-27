@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 16:50:03 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/27 20:18:48 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,20 +64,6 @@ typedef struct s_d
     double y;
 }               t_complex;
 
-typedef struct s_fractal
-{
-    void *mlx;
-    void *win;
-    t_complex z;
-    t_complex c;
-    int iter;
-    double x_tmp;
-    int color;
-    int x;
-    int y;
-    int check_set;
-}               t_fractal;
-
 typedef struct	s_image_data {
 	void	*img;
 	char	*addr;
@@ -85,5 +71,28 @@ typedef struct	s_image_data {
 	int		line_length;
 	int		endian;
 }				t_img;
+
+typedef struct s_fractal
+{
+    t_complex z;
+    t_complex c;
+    t_img img;
+    
+    void *mlx;
+    void *win;
+    int iter;
+    double x_tmp;
+    int color;
+    int x;
+    int y;
+    int check_set;
+    char *name;
+    char *by_me;
+    char ** argv;
+    int argc;
+    double shift_value;
+    double zoom_value;
+}               t_fractal;
+
 
 #endif
