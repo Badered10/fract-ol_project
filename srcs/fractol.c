@@ -6,30 +6,75 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/28 14:28:51 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:07:39 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
 
+static void clean_close(t_fractal *fractal , int id)
+{
+    if (fractal->mlx)
+    {
+        if (fractal->win)
+        {
+            if (fractal->img.img)
+                mlx_destroy_image (fractal->mlx, fractal->img.img);
+            mlx_clear_window (fractal->mlx, fractal->win);
+            mlx_destroy_window (fractal->mlx, fractal->win);
+        }
+        system("leaks fractol");
+        exit (id);
+    }
+    else
+        exit (id);
+        
+}
+void fractal_init(t_fractal *fractal, char **argv, int argc)
+{
+    fractal->argc = argc;
+    fractal->argv = argv;
+    fractal->max_iter = 42;
+    fractal->z.x = 0;
+    fractal->z.y = 0;
+    fractal->c.x = 0;
+    fractal->c.y = 0;
+    fractal->mlx = NULL;
+    fractal->win = NULL;
+    fractal->img.img = NULL;
+    fractal->iter = 0;
+    fractal->color = 0;
+    fractal->x = 0;
+    fractal->y = 0;
+    fractal->check_set = 0;
+    fractal->x_tmp = 0;
+    fractal->x_shift_value = 0;
+    fractal->y_shift_value = 0;
+    fractal->zoom_value = 1;
+}
+
 static void which_fractal(t_fractal *fractal, char **argv)
 {
     if (fractal->check_set == 10)
     {
-        fractal->c.x = (map(fractal->x,-2,2,LENGTH) * fractal->zoom_value) + fractal->x_shift_value;
-        fractal->c.y = (map(fractal->y,2,-2,WIDTH) * fractal->zoom_value) + fractal->y_shift_value;
+        fractal->c.x = (map(fractal->x,-2,2,LENGTH) * fractal->zoom_value) + 
+                        fractal->x_shift_value;
+        fractal->c.y = (map(fractal->y,2,-2,WIDTH) * fractal->zoom_value) + 
+                        fractal->y_shift_value;
         fractal->z.x = 0;
         fractal->z.y = 0; 
     }
     else if (fractal->check_set == 20)
     {
-            fractal->z.x = map(fractal->x,-2,2,LENGTH) * fractal->zoom_value;
-            fractal->z.y = map(fractal->y,2,-2,WIDTH) * fractal->zoom_value;
+            fractal->z.x = map(fractal->x,-2,2,LENGTH) * fractal->zoom_value + 
+                        fractal->x_shift_value;
+            fractal->z.y = map(fractal->y,2,-2,WIDTH) * fractal->zoom_value + 
+                        fractal->y_shift_value;
             if (fabs(check_valid_float(argv[2])) + fabs(check_valid_float(argv[3])) > 4)
             {
                 ft_printf("Julia range is (-2,2) !\n");
-                exit(1);
+                clean_close(fractal,SYNTAX_ERR);
             }
             fractal->c.x = check_valid_float(argv[2]);
             fractal->c.y = check_valid_float(argv[3]);
@@ -49,7 +94,7 @@ static void check_pixel(t_fractal *fractal , t_img *img, char **argv)
 {
     which_fractal(fractal,argv);
     while (pow(fractal->z.x,2) + pow(fractal->z.y,2) <= 4
-            && fractal->iter < MAX_ITER)
+            && fractal->iter < fractal->max_iter)
     {
         fractal->x_tmp = pow(fractal->z.x,2) - pow(fractal->z.y,2); // x = x^2 - y^2 
         fractal->z.y = 2 * fractal->z.x * fractal->z.y + fractal->c.y; //y = 2.x.y + c
@@ -58,11 +103,11 @@ static void check_pixel(t_fractal *fractal , t_img *img, char **argv)
     } 
     if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4) 
     {
-        fractal->color = map(fractal->iter,0x05FFFF,CYAN,MAX_ITER);
+        fractal->color = map(fractal->iter,BLACK,WHITE,fractal->max_iter);
         pixel_image_put(img,fractal->x,fractal->y,fractal->color);
     }
     else
-       pixel_image_put(img,fractal->x,fractal->y, BLACK);
+       pixel_image_put(img,fractal->x,fractal->y, WHITE);
 }
 static void render_fractal(t_fractal *fractal, char **argv)
 {
@@ -99,43 +144,58 @@ int mouse_hook(int button,int x,int y,t_fractal *fractal)
 
 int key_hook(int keycode, t_fractal *fractal) // x <- 123 , x -> 124 , y down 125 ,y up 126
 {
+    if (keycode == 53)
+        clean_close(fractal,0);
     if (keycode == 123)
-        fractal->x_shift_value += 0.5 * (fractal->zoom_value);
-    else if (keycode == 124)
         fractal->x_shift_value -= 0.5 * (fractal->zoom_value);
+    else if (keycode == 124)
+        fractal->x_shift_value += 0.5 * (fractal->zoom_value);
     else if (keycode == 125)
-        fractal->y_shift_value += 0.5 * (fractal->zoom_value);
-    else if (keycode == 126)
         fractal->y_shift_value -= 0.5 * (fractal->zoom_value);
+    else if (keycode == 126)
+        fractal->y_shift_value += 0.5 * (fractal->zoom_value);
+    else if (keycode == 24)
+        fractal->max_iter += 10;
+    else if (keycode == 27)
+    {
+        if (fractal->max_iter > 30)
+            fractal->max_iter -= 10;
+    }
     render_fractal(fractal, fractal->argv);
     return (0);
 }
 
-static void syntax_err(int id, char *arg )
+int destroy_notify(t_fractal *fractal)
+{
+    clean_close(fractal , 0);
+    return (0);
+}
+
+static void syntax_err(int id, char *arg , t_fractal *fractal)
 {
     if (!ft_strncmp(arg,"help",ft_strlen(arg)))
     {
         ft_printf("\t[Help Menu]\nSyntax must be : as folow: ./fractol fractal");
         ft_printf("_name\nIn julia fractal you must enter x and y after name\n");
         ft_printf("Supported fracts:\nM --> Mendlebort Set\nJ --> Julia Set\n");
-        exit(0);
+        clean_close(fractal,0);
     }
     else if (!id)
         ft_printf("You enterd unsupported fractal\nFor mor infos enter './farctol help'");
     else if (id == 20 || id == 10 || id == 30)
          ft_printf("Syntax Error \nFor mor infos enter './farctol help'");
-    exit(1);
+    clean_close(fractal,1);
 }
 static int check_arg_set(char **argv, int argc , t_fractal *fractal)
 {
       if (argc < 2)
-        syntax_err(0, "help");
+        syntax_err(0, "help", fractal);
     if (ft_strlen(argv[1]) != 1)
-        syntax_err(0,argv[1]);
+        syntax_err(0,argv[1],fractal);
     if (argv[1][0] == 'm' || argv[1][0] == 'M')
     {
         if (argc != 2) // ./fractal M
-            syntax_err(10,argv[1]);
+            syntax_err(10, argv[1], fractal);
         fractal->name = "Mandelbrot Set";
         fractal->by_me = "Mandelbrot Set By baouragh";
         return (10);
@@ -143,14 +203,14 @@ static int check_arg_set(char **argv, int argc , t_fractal *fractal)
     else if (argv[1][0] == 'j' || argv[1][0] == 'J')
     {
         if (argc != 4) // ./fractal J x y
-            syntax_err(20,argv[1]);
+            syntax_err(20, argv[1], fractal);
             fractal->name = "Julia Set";
             fractal->by_me = "Julia Set By baouragh";
         return (20);
     }
     else if (argv[1][0] == 's' || argv[1][0] == 'S') // TO DO Sierpinski Gasket;
         return (30);
-    syntax_err(0, "help");
+    syntax_err(0, "help" ,fractal);
     return (0);
 }
  
@@ -158,22 +218,19 @@ int main(int argc, char **argv)  // usage : ./fractol name x y
 {
     t_fractal fractal;
 
-    fractal.argv = argv;
-    fractal.argc = argc;
-    fractal.zoom_value = 1;
-    fractal.x_shift_value = 0;
-    fractal.y_shift_value = 0;
+    fractal_init(&fractal, argv, argc);
     fractal.check_set = check_arg_set(argv,argc, &fractal);
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
-        return (MLX_FAIL);
+        exit (MLX_FAIL);
     fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, fractal.name);
     if (!fractal.win)
-        return NEW_WIN_FAIL;
+        clean_close(&fractal, NEW_WIN_FAIL);
     render_fractal(&fractal, argv);
     mlx_mouse_hook (fractal.win, mouse_hook , &fractal);
-    mlx_key_hook ( fractal.win, key_hook, &fractal);
+    mlx_key_hook (fractal.win, key_hook, &fractal);
+    mlx_hook(fractal.win, 17, 0, destroy_notify , &fractal);
     mlx_loop(fractal.mlx);
     return 0;
 }
-
+    

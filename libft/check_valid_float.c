@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:58:18 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 19:19:59 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:31:48 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ double check_valid_float(char *str)
 
     signe = 1;
     time = 1;
+    res = 0;
+    before_p = 0;
     if(check_first(&str ,&signe ,&before_p) == SYNTAX_ERR)
         return (SYNTAX_ERR);
     if (!*str)
@@ -69,5 +71,5 @@ double check_valid_float(char *str)
         return (SYNTAX_ERR);
     if(check_last(&str, &before_p, &time, &res) == SYNTAX_ERR)
         return (SYNTAX_ERR);
-        return (res * signe);
+    return (res * signe);
 }
