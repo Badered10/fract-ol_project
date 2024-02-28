@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/28 17:06:51 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:22:22 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct s_fractal
     int argc;
     int max_iter;
     
+    int mouse_x;
+    int mouse_y;
     double x_tmp;
     double x_shift_value;
     double y_shift_value;

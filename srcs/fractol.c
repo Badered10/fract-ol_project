@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/28 17:07:39 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:01:56 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ void fractal_init(t_fractal *fractal, char **argv, int argc)
     fractal->x_shift_value = 0;
     fractal->y_shift_value = 0;
     fractal->zoom_value = 1;
+    fractal->mouse_x = 0;
+    fractal->mouse_y = 0;
 }
 
-static void which_fractal(t_fractal *fractal, char **argv)
+static void which_fractal(t_fractal *fractal, char **argv) // mouse (x= 100,y=100);
 {
     if (fractal->check_set == 10)
     {
-        fractal->c.x = (map(fractal->x,-2,2,LENGTH) * fractal->zoom_value) + 
+        fractal->c.x = (map(fractal->x , -2, 2, LENGTH) * fractal->zoom_value) + fractal->mouse_x +
                         fractal->x_shift_value;
-        fractal->c.y = (map(fractal->y,2,-2,WIDTH) * fractal->zoom_value) + 
+        fractal->c.y = (map(fractal->y , 2, -2, WIDTH) * fractal->zoom_value) + fractal->mouse_y +
                         fractal->y_shift_value;
         fractal->z.x = 0;
-        fractal->z.y = 0; 
+        fractal->z.y = 0;
     }
     else if (fractal->check_set == 20)
     {
@@ -132,10 +134,11 @@ static void render_fractal(t_fractal *fractal, char **argv)
 }
 int mouse_hook(int button,int x,int y,t_fractal *fractal)
 {
-    (void)x;
-    (void)y;
+    fractal->mouse_x = map(x, -2, 2, LENGTH);
+    fractal->mouse_y = map(y, 2, -2, WIDTH);
+
     if (button == 5)
-        fractal->zoom_value *= 0.95;
+        fractal->zoom_value *=  0.95;
     else if (button == 4)
          fractal->zoom_value *= 1.05;
     render_fractal(fractal, fractal->argv);
