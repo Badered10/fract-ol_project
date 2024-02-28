@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 21:05:43 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/02/28 14:16:45 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ typedef struct s_fractal
     char *by_me;
     char ** argv;
     int argc;
-    double shift_value;
+    double x_shift_value;
+    double y_shift_value;
     double zoom_value;
 }               t_fractal;
 
