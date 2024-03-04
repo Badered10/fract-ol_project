@@ -6,13 +6,13 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/28 20:01:56 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:17:16 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
-
+#include <strings.h>
 static void clean_close(t_fractal *fractal , int id)
 {
     if (fractal->mlx)
@@ -29,40 +29,23 @@ static void clean_close(t_fractal *fractal , int id)
     }
     else
         exit (id);
-        
 }
 void fractal_init(t_fractal *fractal, char **argv, int argc)
 {
+    ft_bzero(fractal, sizeof(t_fractal));
     fractal->argc = argc;
     fractal->argv = argv;
-    fractal->max_iter = 42;
-    fractal->z.x = 0;
-    fractal->z.y = 0;
-    fractal->c.x = 0;
-    fractal->c.y = 0;
-    fractal->mlx = NULL;
-    fractal->win = NULL;
-    fractal->img.img = NULL;
-    fractal->iter = 0;
-    fractal->color = 0;
-    fractal->x = 0;
-    fractal->y = 0;
-    fractal->check_set = 0;
-    fractal->x_tmp = 0;
-    fractal->x_shift_value = 0;
-    fractal->y_shift_value = 0;
+    fractal->max_iter = 20;
     fractal->zoom_value = 1;
-    fractal->mouse_x = 0;
-    fractal->mouse_y = 0;
 }
 
 static void which_fractal(t_fractal *fractal, char **argv) // mouse (x= 100,y=100);
 {
     if (fractal->check_set == 10)
     {
-        fractal->c.x = (map(fractal->x , -2, 2, LENGTH) * fractal->zoom_value) + fractal->mouse_x +
+        fractal->c.x = map(fractal->x , -2, 2, LENGTH) * fractal->zoom_value +
                         fractal->x_shift_value;
-        fractal->c.y = (map(fractal->y , 2, -2, WIDTH) * fractal->zoom_value) + fractal->mouse_y +
+        fractal->c.y = map(fractal->y , 2, -2, WIDTH) * fractal->zoom_value +
                         fractal->y_shift_value;
         fractal->z.x = 0;
         fractal->z.y = 0;
@@ -103,18 +86,19 @@ static void check_pixel(t_fractal *fractal , t_img *img, char **argv)
         fractal->z.x = fractal->x_tmp + fractal->c.x;
         (fractal->iter)++;
     } 
-    if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4) 
+    if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4)
     {
         fractal->color = map(fractal->iter,BLACK,WHITE,fractal->max_iter);
         pixel_image_put(img,fractal->x,fractal->y,fractal->color);
     }
     else
-       pixel_image_put(img,fractal->x,fractal->y, WHITE);
+       pixel_image_put(img,fractal->x,fractal->y, BLACK);
 }
 static void render_fractal(t_fractal *fractal, char **argv)
 {
     t_img img;
     
+    mlx_clear_window(fractal->mlx, fractal->win);
     img.img = mlx_new_image(fractal->mlx,WIDTH + 1,LENGTH + 1);
     fractal->img = img;
     img.addr = mlx_get_data_addr(img.img,&img.bpp,&img.line_length,&img.endian);
@@ -131,18 +115,6 @@ static void render_fractal(t_fractal *fractal, char **argv)
         }
     mlx_put_image_to_window(fractal->mlx,fractal->win,fractal->img.img,0,0);
     mlx_string_put(fractal->mlx, fractal->win, 0, 0,BLACK,fractal->by_me);
-}
-int mouse_hook(int button,int x,int y,t_fractal *fractal)
-{
-    fractal->mouse_x = map(x, -2, 2, LENGTH);
-    fractal->mouse_y = map(y, 2, -2, WIDTH);
-
-    if (button == 5)
-        fractal->zoom_value *=  0.95;
-    else if (button == 4)
-         fractal->zoom_value *= 1.05;
-    render_fractal(fractal, fractal->argv);
-    return(1);
 }
 
 int key_hook(int keycode, t_fractal *fractal) // x <- 123 , x -> 124 , y down 125 ,y up 126
@@ -164,10 +136,35 @@ int key_hook(int keycode, t_fractal *fractal) // x <- 123 , x -> 124 , y down 12
         if (fractal->max_iter > 30)
             fractal->max_iter -= 10;
     }
-    render_fractal(fractal, fractal->argv);
+    if ( (keycode >= 123 && keycode <= 126 ) || keycode == 24 || keycode == 27)
+        render_fractal(fractal, fractal->argv);
     return (0);
 }
 
+int mouse_hook(int button,int x,int y,t_fractal *fractal)
+{
+    fractal->mouse_x = map(x,-2,2,WIDTH);
+    fractal->mouse_y = map(y,2,-2,LENGTH);
+    
+    printf("x --> %f , y --> %f \n", fractal->mouse_x ,  fractal->mouse_y);
+    if (button == 5)
+    {
+        fractal->zoom_value *=  0.95;
+        fractal->x_shift_value -= fractal->mouse_x * fractal->zoom_value ;
+        fractal->y_shift_value = 0;
+        printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
+        render_fractal(fractal, fractal->argv);
+    }
+    else if (button == 4)
+    {
+        fractal->zoom_value *= 1.05;
+        fractal->y_shift_value -= fractal->mouse_y * fractal->zoom_value;
+        fractal->x_shift_value = 0; 
+        printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
+        render_fractal(fractal, fractal->argv);
+    }
+    return(1);
+}
 int destroy_notify(t_fractal *fractal)
 {
     clean_close(fractal , 0);
@@ -221,6 +218,8 @@ int main(int argc, char **argv)  // usage : ./fractol name x y
 {
     t_fractal fractal;
 
+    printf("%f\n",map(3,-10,0,10));
+    exit (200);
     fractal_init(&fractal, argv, argc);
     fractal.check_set = check_arg_set(argv,argc, &fractal);
     fractal.mlx = mlx_init();
