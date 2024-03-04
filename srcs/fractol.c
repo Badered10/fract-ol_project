@@ -6,13 +6,13 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/04 10:17:16 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:39:55 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // Julia , Mandelbrot
 #include "../headers/fractol.h"
-#include <strings.h>
+
 static void clean_close(t_fractal *fractal , int id)
 {
     if (fractal->mlx)
@@ -102,10 +102,10 @@ static void render_fractal(t_fractal *fractal, char **argv)
     img.img = mlx_new_image(fractal->mlx,WIDTH + 1,LENGTH + 1);
     fractal->img = img;
     img.addr = mlx_get_data_addr(img.img,&img.bpp,&img.line_length,&img.endian);
-    fractal->y = 0;
+    fractal->y = fractal->y_shift_value;
      while (fractal->y <= WIDTH)
         {
-            fractal->x = 0;
+            fractal->x = fractal->x_shift_value;
             while (fractal->x <= LENGTH)
             {
                 check_pixel(fractal, &img, argv);
@@ -150,18 +150,18 @@ int mouse_hook(int button,int x,int y,t_fractal *fractal)
     if (button == 5)
     {
         fractal->zoom_value *=  0.95;
-        fractal->x_shift_value -= fractal->mouse_x * fractal->zoom_value ;
-        fractal->y_shift_value = 0;
-        printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
+        // fractal->x_shift_value *= (fractal->mouse_x * fractal->zoom_value) ;
+        // printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
         render_fractal(fractal, fractal->argv);
+        // fractal->y_shift_value = fractal->mouse_y;
     }
     else if (button == 4)
     {
         fractal->zoom_value *= 1.05;
-        fractal->y_shift_value -= fractal->mouse_y * fractal->zoom_value;
-        fractal->x_shift_value = 0; 
-        printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
+        // fractal->y_shift_value *= (fractal->mouse_y * fractal->zoom_value);
+        // printf("x shift --> %f , y shift --> %f \n",fractal->x_shift_value, fractal->y_shift_value);
         render_fractal(fractal, fractal->argv);
+        // fractal->x_shift_value = fractal->mouse_x;
     }
     return(1);
 }
@@ -218,8 +218,6 @@ int main(int argc, char **argv)  // usage : ./fractol name x y
 {
     t_fractal fractal;
 
-    printf("%f\n",map(3,-10,0,10));
-    exit (200);
     fractal_init(&fractal, argv, argc);
     fractal.check_set = check_arg_set(argv,argc, &fractal);
     fractal.mlx = mlx_init();
