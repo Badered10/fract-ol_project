@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 15:39:43 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:13:48 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void check_pixel(t_fractal *fractal , t_img *img, char **argv)
             && fractal->iter < fractal->max_iter)
     {
         fractal->x_tmp = pow(fractal->z.x,2) - pow(fractal->z.y,2); // x = x^2 - y^2 
-        fractal->z.y = 2 * fractal->z.x * (-fractal->z.y) + fractal->c.y; //y = 2.x.y + c
+        fractal->z.y = 2 * fractal->z.x * (fractal->z.y) + fractal->c.y; //y = 2.x.y + c
         fractal->z.x = fractal->x_tmp + fractal->c.x;
         (fractal->iter)++;
     } 

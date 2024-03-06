@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 15:57:55 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/06 21:15:30 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
 # define SYNTAX_ERR 3
-# define WIDTH 1200
-# define LENGTH 1200
+# define WIDTH 400
+# define LENGTH 400
 
 #define RED 0xFF0000
 #define GREEN 0x00FF00
@@ -110,6 +110,6 @@ void render_fractal(t_fractal *fractal, char **argv);
 void clean_close(t_fractal *fractal , int id);
 void fractal_init(t_fractal *fractal, char **argv, int argc);
 double map(double unsacled_num, double new_min, double new_max , double old_max);
-
+int     zoom_tracker(int button, int x, int y, t_fractal *fractal);
 
 #endif
