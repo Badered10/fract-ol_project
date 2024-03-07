@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 15:24:18 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:32:56 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void check_pixel(t_fractal *fractal , t_img *img, char **argv)
     } 
     if (pow(fractal->z.x,2) + pow(fractal->z.y,2) > 4)
     {
-        fractal->color = map(fractal->iter,BLACK,WHITE,fractal->max_iter);
-        pixel_image_put(img,fractal->x,fractal->y,fractal->color);
+        fractal->color = map(fractal->iter, BLACK, WHITE, fractal->max_iter);
+        pixel_image_put(img, fractal->x, fractal->y, fractal->color);
     }
     else
-       pixel_image_put(img,fractal->x,fractal->y, fractal->set_color);
+       pixel_image_put(img, fractal->x, fractal->y, fractal->set_color);
 }

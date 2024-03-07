@@ -6,11 +6,20 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:38:32 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 14:46:59 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:35:17 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
+
+static int tricron_set(char **argv, t_fractal *fractal, int argc)
+{
+    if (argc != 2) // ./fractal T
+            syntax_err(10, argv[1], fractal);
+        fractal->name = "Tricorn Set";
+        fractal->by_me = "Tricorn Set By baouragh";
+        return (30);
+}
 
 void syntax_err(int id, char *arg , t_fractal *fractal)
 {
@@ -28,15 +37,6 @@ void syntax_err(int id, char *arg , t_fractal *fractal)
     else if (id == 20 || id == 10 || id == 30)
          ft_printf("Syntax Error \nFor mor infos enter './farctol help'");
     clean_close(fractal,1);
-}
-
-int tricron_set(char **argv, t_fractal *fractal, int argc)
-{
-    if (argc != 2) // ./fractal T
-            syntax_err(10, argv[1], fractal);
-        fractal->name = "Tricorn Set";
-        fractal->by_me = "Tricorn Set By baouragh";
-        return (30);
 }
 int check_arg_set(char **argv, int argc , t_fractal *fractal)
 {

@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 15:46:49 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:39:26 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ typedef struct s_fractal
     double x_tmp;
     double x_shift_value;
     double y_shift_value;
-    double zoom_value;
+    double last_zoom;
     double x_zoom;
     double y_zoom;
 }               t_fractal;
