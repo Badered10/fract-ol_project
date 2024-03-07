@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 21:15:30 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:56:06 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ void render_fractal(t_fractal *fractal, char **argv);
 void clean_close(t_fractal *fractal , int id);
 void fractal_init(t_fractal *fractal, char **argv, int argc);
 double map(double unsacled_num, double new_min, double new_max , double old_max);
-int     zoom_tracker(int button, int x, int y, t_fractal *fractal);
 
 #endif

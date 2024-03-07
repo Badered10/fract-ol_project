@@ -22,6 +22,9 @@
         "fcntl.h": "c",
         "stdio.h": "c",
         "limits.h": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "__cxx_version": "c",
+        "__hash_table": "c",
+        "functional": "c"
     }
 }

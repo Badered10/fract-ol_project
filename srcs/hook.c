@@ -6,13 +6,16 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 21:50:37 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:22:28 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
 
-int key_hook(int keycode, t_fractal *fractal) // x <- 123 , x -> 124 , y down 125 ,y up 126
+/*
+    x left 123 , x right 124 , y down 125 ,y up 126
+*/
+int key_hook(int keycode, t_fractal *fractal)
 {
     if (keycode == 53)
         clean_close(fractal,0);

@@ -6,13 +6,13 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:41:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 15:50:27 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:13:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
 
-void which_fractal(t_fractal *fractal, char **argv) // mouse (x= 100,y=100);
+void which_fractal(t_fractal *fractal, char **argv)
 {
     if (fractal->check_set == 10)
     {
