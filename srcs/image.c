@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 14:50:35 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:24:18 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ void check_pixel(t_fractal *fractal , t_img *img, char **argv)
         pixel_image_put(img,fractal->x,fractal->y,fractal->color);
     }
     else
-       pixel_image_put(img,fractal->x,fractal->y, BLACK);
+       pixel_image_put(img,fractal->x,fractal->y, fractal->set_color);
 }

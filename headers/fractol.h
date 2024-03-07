@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 12:56:06 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:46:49 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
 # define SYNTAX_ERR 3
-# define WIDTH 400
-# define LENGTH 400
+# define WIDTH 800
+# define LENGTH 800
 
 #define RED 0xFF0000
 #define GREEN 0x00FF00
@@ -82,6 +82,7 @@ typedef struct s_fractal
     
     int iter;
     int color;
+    int set_color;
     double x;
     double y;
     int check_set;

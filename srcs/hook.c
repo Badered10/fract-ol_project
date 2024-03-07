@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 12:22:28 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 16:32:51 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,42 @@
 /*
     x left 123 , x right 124 , y down 125 ,y up 126
 */
-int key_hook(int keycode, t_fractal *fractal)
+
+static void hundlle_keys(int *keycode, t_fractal *fractal)
 {
-    if (keycode == 53)
+     if (*keycode == 53)
         clean_close(fractal,0);
-    if (keycode == 123)
+    else if (*keycode == 123)
         fractal->x_shift_value -= 0.5 * (fractal->zoom_value);
-    else if (keycode == 124)
+    else if (*keycode == 124)
         fractal->x_shift_value += 0.5 * (fractal->zoom_value);
-    else if (keycode == 125)
+    else if (*keycode == 125)
         fractal->y_shift_value -= 0.5 * (fractal->zoom_value);
-    else if (keycode == 126)
+    else if (*keycode == 126)
         fractal->y_shift_value += 0.5 * (fractal->zoom_value);
-    else if (keycode == 24)
+    else if (*keycode == 24)
         fractal->max_iter += 10;
-    else if (keycode == 27)
-    {
-        if (fractal->max_iter > 30)
+    else if (*keycode == 27)
             fractal->max_iter -= 10;
-    }
-    if ( (keycode >= 123 && keycode <= 126 ) || keycode == 24 || keycode == 27)
-        render_fractal(fractal, fractal->argv);
+    else if (*keycode == 12 && fractal->set_color != DARK_ORCHID)
+        fractal->set_color = DARK_ORCHID;
+    else if (*keycode == 13 && fractal->set_color != GOLDENROD)
+        fractal->set_color = GOLDENROD;
+    else if (*keycode == 2 && fractal->set_color != BLACK)
+        fractal->set_color = BLACK;
+    else if (*keycode == 1 && fractal->set_color != WHITE)
+        fractal->set_color = WHITE;
+    else
+        *keycode = 0;
+}
+int key_hook(int keycode, t_fractal *fractal)  
+{
+    hundlle_keys(&keycode, fractal);
+    if (fractal->max_iter == 10)
+        fractal->max_iter = 20;
+    else if ( (keycode >= 123 && keycode <= 126 ) || keycode == 24 || keycode == 27 
+        || (keycode >= 12 && keycode <= 13 ) || keycode == 2 || keycode == 1)
+            render_fractal(fractal, fractal->argv);
     return (0);
 }
 
