@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:41:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 12:13:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/07 14:44:18 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void which_fractal(t_fractal *fractal, char **argv)
 {
-    if (fractal->check_set == 10)
+    if (fractal->check_set == 10 || fractal->check_set == 30)
     {
         fractal->c.x = map(fractal->x, -2, 2, LENGTH) * fractal->zoom_value  +
                         fractal->x_shift_value;
