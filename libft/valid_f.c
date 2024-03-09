@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_valid_float.c                                :+:      :+:    :+:   */
+/*   valid_f.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -52,7 +52,7 @@ static double check_last(char **str, int *before_p, int *time , double *res)
         return (SYNTAX_ERR);
 }
 
-double check_valid_float(char *str)
+double valid_f(char *str)
 {
     double res;
     int before_p;

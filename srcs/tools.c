@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:33:11 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 18:39:26 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:42:13 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void fractal_init(t_fractal *fractal, char **argv, int argc)
     fractal->argc = argc;
     fractal->argv = argv;
     fractal->max_iter = 20;
-    fractal->last_zoom = 1;
+    fractal->new_zoom = 1;
 }
 double map(double unsacled_num, double new_min, double new_max , double old_max)
 {

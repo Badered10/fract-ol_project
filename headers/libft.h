@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:36:57 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/27 16:52:31 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 13:49:56 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 
 
-double				check_valid_float(char *str);
+double				valid_f(char *str);
 
 #endif

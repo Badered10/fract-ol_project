@@ -6,7 +6,7 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/07 17:33:58 by baouragh          #+#    #+#              #
-#    Updated: 2024/02/27 16:40:48 by baouragh         ###   ########.fr        #
+#    Updated: 2024/03/09 13:49:56 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS =	ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strle
 		ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c\
 		ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c\
 		ft_putunbr_fd.c ft_uitoa.c ft_putnstr_fd.c ft_itohexa.c ft_putptr_fd.c ft_puthexa_fd.c ft_isdigit_nz.c \
-		check_valid_float.c
+		valid_f.c
 		
 SRC_B = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c ft_lstdelone_bonus.c\
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
