@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/07 18:32:56 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:33:31 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	pixel_image_put(t_img *img, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	dst = img->addr + (y * img->line_WIDTH + x * (img->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 void check_pixel(t_fractal *fractal , t_img *img, char **argv)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/06 15:38:55 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:33:31 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)  // usage : ./fractol name x y
     fractal.mlx = mlx_init();
     if (!fractal.mlx)
         exit (MLX_FAIL);
-    fractal.win = mlx_new_window(fractal.mlx, LENGTH, WIDTH, fractal.name);
+    fractal.win = mlx_new_window(fractal.mlx, WIDTH, LENGTH, fractal.name);
     if (!fractal.win)
         clean_close(&fractal, NEW_WIN_FAIL);
     render_fractal(&fractal, argv);

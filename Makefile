@@ -6,13 +6,14 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:09:19 by baouragh          #+#    #+#              #
-#    Updated: 2024/03/06 15:57:19 by baouragh         ###   ########.fr        #
+#    Updated: 2024/03/09 15:36:34 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CFLAGS =  -Wall -Wextra -Werror
-MFLAGS =  -lmlx -framework OpenGL -framework AppKit
+MFLAGS = -lmlx -framework OpenGL -framework AppKit
+# -fsanitize=address -g3
 MAKEP = make -C ft_printf
 
 SRCS = srcs/main.c srcs/fractals.c srcs/hook.c srcs/image.c srcs/parss.c srcs/render.c srcs/tools.c
