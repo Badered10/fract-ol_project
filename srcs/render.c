@@ -6,36 +6,37 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:35:34 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 21:13:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 23:38:46 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
 
-void render_fractal(t_fractal *fractal, char **argv)
+void	render_fractal(t_fractal *f, char **argv)
 {
-    char *iter;
-    char *merged;
+	char	*iter;
+	char	*merged;
 
-    iter = ft_itoa(fractal->max_iter);
-    merged = ft_strjoin("iterations: ", iter);
-    mlx_clear_window(fractal->mlx, fractal->win);
-    fractal->img.img = mlx_new_image(fractal->mlx, WIDTH + 1, LENGTH + 1);
-    fractal->img.addr = mlx_get_data_addr(fractal->img.img,&fractal->img.bpp,&fractal->img.line_WIDTH,&fractal->img.endian);
-    fractal->y = 0;
-    while (fractal->y <= LENGTH)
-        {
-            fractal->x = 0;
-            while (fractal->x <= WIDTH)
-            {
-                check_pixel(fractal, &fractal->img, argv);
-                (fractal->x)++;
-            }
-            (fractal->y)++;
-        }
-    mlx_put_image_to_window(fractal->mlx,fractal->win,fractal->img.img,0,0);
-    mlx_string_put(fractal->mlx, fractal->win, 0, 0, DARK_ORCHID, fractal->by_me);
-    mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 20, YELLOW, merged);
-    free (iter);
-    free (merged);
+	iter = ft_itoa(f->max_iter);
+	merged = ft_strjoin("iterations: ", iter);
+	mlx_clear_window(f->mlx, f->win);
+	f->img.img = mlx_new_image(f->mlx, WIDTH + 1, LENGTH + 1);
+	f->img.addr = mlx_get_data_addr(f->img.img, &f->img.bpp,
+			&f->img.line_len, &f->img.endian);
+	f->y = 0;
+	while (f->y <= LENGTH)
+	{
+		f->x = 0;
+		while (f->x <= WIDTH)
+		{
+			check_pixel(f, &f->img, argv);
+			(f->x)++;
+		}
+		(f->y)++;
+	}
+	mlx_put_image_to_window(f->mlx, f->win, f->img.img, 0, 0);
+	mlx_string_put(f->mlx, f->win, 0, 0, DARK_ORCHID, f->by_me);
+	mlx_string_put(f->mlx, f->win, 0, LENGTH / 20, YELLOW, merged);
+	free(iter);
+	free(merged);
 }
