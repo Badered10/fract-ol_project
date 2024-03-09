@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 15:35:50 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 15:46:21 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,13 @@
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
 # define SYNTAX_ERR 3
+/*
+    y
+*/
 # define LENGTH 480
+/*
+    x
+*/
 # define WIDTH 640
 
 #define RED 0xFF0000

@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:41:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 15:33:31 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:14:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 
 void which_fractal(t_fractal *fractal, char **argv)
 {
-    if (fractal->check_set == 10 || fractal->check_set == 30)
-    {
-        fractal->c.x = map(fractal->x, -2, 2, WIDTH) * fractal->new_zoom  +
-                        fractal->x_shift_value;
-        fractal->c.y = map(fractal->y, 2, -2, LENGTH) * fractal->new_zoom  +
-                        fractal->y_shift_value;
-        fractal->z.x = 0;
-        fractal->z.y = 0;
-    }
-    else if (fractal->check_set == 20)
+    if (fractal->check_set == 20)
     {
             fractal->z.x = map(fractal->x,-2,2,WIDTH) * fractal->new_zoom + 
                         fractal->x_shift_value;
@@ -37,6 +28,15 @@ void which_fractal(t_fractal *fractal, char **argv)
             }
             fractal->c.x = valid_f(argv[2]);
             fractal->c.y = valid_f(argv[3]);
+    } 
+    else
+    {
+        fractal->c.x = map(fractal->x, -2, 2, WIDTH) * fractal->new_zoom  +
+                        fractal->x_shift_value;
+        fractal->c.y = map(fractal->y, 2, -2, LENGTH) * fractal->new_zoom  +
+                        fractal->y_shift_value;
+        fractal->z.x = 0;
+        fractal->z.y = 0;
     }
     fractal->iter = 0;
 }

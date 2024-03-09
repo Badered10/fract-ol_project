@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:35:34 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 15:33:58 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:13:10 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void render_fractal(t_fractal *fractal, char **argv)
     fractal->img.img = mlx_new_image(fractal->mlx, WIDTH + 1, LENGTH + 1);
     fractal->img.addr = mlx_get_data_addr(fractal->img.img,&fractal->img.bpp,&fractal->img.line_WIDTH,&fractal->img.endian);
     fractal->y = 0;
-     while (fractal->y <= LENGTH)
+    while (fractal->y <= LENGTH)
         {
             fractal->x = 0;
             while (fractal->x <= WIDTH)
