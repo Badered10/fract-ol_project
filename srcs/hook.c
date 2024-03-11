@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/10 19:05:19 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:36:23 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,19 +81,22 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 			+ fractal->y_shift_value;
 		fractal->x_shift_value = mouse_x - ((mouse_x - fractal->x_shift_value)
 				* zoom_factor);
-		fractal->y_shift_value = mouse_y - ((mouse_y - fractal->y_shift_value) 
+		fractal->y_shift_value = mouse_y - ((mouse_y - fractal->y_shift_value)
 				* zoom_factor);
 		render_fractal(fractal, fractal->argv);
-		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH /10, YELLOW , ft_strjoin("x :",ft_itoa(x)));
-		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH /7, YELLOW , ft_strjoin("y :",ft_itoa(y)));
+		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 10, YELLOW,
+			ft_strjoin("x :", ft_itoa(x)));
+		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 7, YELLOW,
+			ft_strjoin("y :", ft_itoa(y)));
 	}
 	if (button == 1)
 	{
 		mlx_clear_window(fractal->mlx, fractal->win);
 		render_fractal(fractal, fractal->argv);
-		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH /10, YELLOW , ft_strjoin("x :",ft_itoa(x)));
-		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH /7, YELLOW , ft_strjoin("y :",ft_itoa(y)));
+		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 10, YELLOW,
+			ft_strjoin("x :", ft_itoa(x)));
+		mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 7, YELLOW,
+			ft_strjoin("y :", ft_itoa(y)));
 	}
-	printf("%d\n",button);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 23:38:46 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:36:46 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_pixel(t_fractal *fractal, t_img *img, char **argv)
 	{
 		fractal->x_tmp = pow(fractal->z.x, 2) - pow(fractal->z.y, 2);
 		if (fractal->check_set == 30)
-			fractal->z.y *= -1;
+			fractal->z.y *= -2;
 		if (fractal->check_set == 40)
 			fractal->z.y = -2 * fabs(fractal->z.x) * fabs(fractal->z.y)
 				+ fractal->c.y;
@@ -37,11 +37,12 @@ void	check_pixel(t_fractal *fractal, t_img *img, char **argv)
 		fractal->z.x = fractal->x_tmp + fractal->c.x;
 		(fractal->iter)++;
 	}
-	if (pow(fractal->z.x, 2) + pow(fractal->z.y, 2) > 4)
+	if (fractal->iter < fractal->max_iter)
 	{
 		fractal->color = map(fractal->iter, BLACK, WHITE, fractal->max_iter);
 		pixel_image_put(img, fractal->x, fractal->y, fractal->color);
 	}
 	else
 		pixel_image_put(img, fractal->x, fractal->y, fractal->set_color);
+	fractal->iter = -1;
 }

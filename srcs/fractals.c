@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:41:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 21:14:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:20:52 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void	which_fractal(t_fractal *fractal, char **argv)
 		fractal->z.x = 0;
 		fractal->z.y = 0;
 	}
-	fractal->iter = 0;
 }

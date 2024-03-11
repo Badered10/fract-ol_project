@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 23:41:42 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/11 17:36:05 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@
 /*
     y
 */
-# define LENGTH 480
+# define LENGTH 600
 /*
     x
 */
-# define WIDTH 640
+# define WIDTH 1200
+
 # define RED 0xFF0000
 # define GREEN 0x00FF00
 # define BLUE 0x0000FF
