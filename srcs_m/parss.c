@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:38:32 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 23:31:37 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/12 22:14:31 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ static int	check_sets(char **argv, t_fractal *fractal, int argc)
 		fractal->by_me = "Julia Set By baouragh";
 		return (20);
 	}
-	else if (argv[1][0] == 't' || argv[1][0] == 'T')
-	{
-		if (argc != 2)
-			syntax_err(10, argv[1], fractal);
-		fractal->name = "Tricorn Set";
-		fractal->by_me = "Tricorn Set By baouragh";
-		return (30);
-	}
 	return (0);
 }
 
@@ -49,7 +41,6 @@ void	syntax_err(int id, char *arg, t_fractal *fractal)
 		ft_printf("_name\nIn julia case you must enter x and y after 'J'\t");
 		ft_printf("example: ./fractol J 0 0.75\n");
 		ft_printf("Supported fracts:\nM --> Mendlebort Set\nJ --> Julia Set\n");
-		ft_printf("T --> Tricron Set\nB --> Burning ship Set\n");
 		clean_close(fractal, 0);
 	}
 	else if (!id)
@@ -59,7 +50,7 @@ void	syntax_err(int id, char *arg, t_fractal *fractal)
 	}
 	else
 		ft_printf("Syntax Error \nFor mor infos enter './farctol help'");
-	clean_close(fractal, 1);
+	clean_close(fractal, SYNTAX_ERR);
 }
 
 int	check_arg_set(char **argv, int argc, t_fractal *fractal)
@@ -73,14 +64,6 @@ int	check_arg_set(char **argv, int argc, t_fractal *fractal)
 	check = check_sets(argv, fractal, argc);
 	if (check)
 		return (check);
-	if (argv[1][0] == 'b' || argv[1][0] == 'B')
-	{
-		if (argc != 2)
-			syntax_err(10, argv[1], fractal);
-		fractal->name = "Burning Ship Set";
-		fractal->by_me = "Burning Ship Set By baouragh";
-		return (40);
-	}
 	syntax_err(0, "help", fractal);
 	return (0);
 }

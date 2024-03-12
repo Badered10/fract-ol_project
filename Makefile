@@ -6,7 +6,7 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:09:19 by baouragh          #+#    #+#              #
-#    Updated: 2024/03/11 17:17:07 by baouragh         ###   ########.fr        #
+#    Updated: 2024/03/12 14:54:19 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,51 +16,38 @@ MFLAGS = -fsanitize=address -g3 -lmlx -framework OpenGL -framework AppKit
 # -fsanitize=address -g3
 MAKEP = make -C ft_printf
 
-SRCS = srcs/main.c srcs/fractals.c srcs/hook.c srcs/image.c srcs/parss.c srcs/render.c srcs/tools.c
-OBJS = $(SRCS:.c=.o)
+SRCS_B = srcs_b/main.c srcs_b/fractals.c srcs_b/hook.c srcs_b/image.c srcs_b/parss.c srcs_b/render.c srcs_b/tools.c
+SRCS_M = srcs_m/main.c srcs_m/fractals.c srcs_m/hook.c srcs_m/image.c srcs_m/parss.c srcs_m/render.c srcs_m/tools.c
+
+OBJS_M = $(SRCS_M:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
 
 LIBS =  ft_printf/libftprintf.a
 NAME = fractol
+NAME_BONUS = fractol_bonus
 
 all: $(NAME)
 
-$(NAME): $(LIBS) $(OBJS)
-	@echo "$(BLUE) Linking...🌀$(END)"
-	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJS) $(LIBS) -o $(NAME)
-	@sleep 0.3
-	@echo "$(GREEN) Normal Mandatory DONE ✔$(END)"
+$(NAME): $(LIBS) $(OBJS_M)
+	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJS_M) $(LIBS) -o $(NAME)
 
+bonus: $(LIBS) $(OBJS_B)
+	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJS_B) $(LIBS) -o $(NAME_BONUS)
 $(LIBS):
-	@echo "$(BLUE) Make libs...🌀$(END)"
 	@$(MAKEP)
-	@sleep 0.3
-	@echo "$(GREEN) Make libs DONE ✔$(END)"
 clean:
-	@echo "$(RED)Removing object files...🗑️$(END)"
 	@$(MAKEP) clean
-	@rm -f $(OBJS)
-	@sleep 0.3
-	@echo "$(GREEN)Removing object files DONE ✔$(END)"
+	@rm -f $(OBJS_M) $(OBJS_B)
 fclean: clean
-	@echo "$(RED)Remove all...🗑️$(END)"
 	@$(MAKEP) fclean
-	@rm -rf $(NAME)
-	@sleep 0.3
-	@echo "$(GREEN)Remove all DONE ✔$(END)"
+	@rm -rf $(NAME) $(NAME_BONUS)
 
 re: fclean all
+
 clear:
 	@clear
 
 m: all clean clear
-	@echo "$(BLUE)Quick Mandatory...🌀$(END)"
-	@sleep 0.3
-	@echo "$(GREEN)Quick Mandatory DONE ✔$(END)"
-
-GREEN = \033[0;32m
-RED = \033[0;31m
-BLUE = \033[0;34m
-END = \033[0m
-
+b: fclean bonus clean clear
 .PHONY: clean clear
-.SECONDARY: $(OBJS)
+.SECONDARY: $(OBJS_M)

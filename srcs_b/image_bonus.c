@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   image_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/11 17:36:46 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/12 18:17:31 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_pixel(t_fractal *fractal, t_img *img, char **argv)
 	{
 		fractal->x_tmp = pow(fractal->z.x, 2) - pow(fractal->z.y, 2);
 		if (fractal->check_set == 30)
-			fractal->z.y *= -2;
+			fractal->z.y *= -1;
 		if (fractal->check_set == 40)
 			fractal->z.y = -2 * fabs(fractal->z.x) * fabs(fractal->z.y)
 				+ fractal->c.y;
