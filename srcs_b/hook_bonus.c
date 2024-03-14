@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/12 22:11:19 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:00:04 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	hundlle_keys(int *keycode, t_fractal *fractal)
 	if (*keycode == 53)
 		clean_close(fractal, 0);
 	else if (*keycode == 123)
-		fractal->x_shift_value -= 0.5 * (fractal->new_zoom);
+		fractal->x_shift -= (0.5 * fractal->new_zoom);
 	else if (*keycode == 124)
-		fractal->x_shift_value += 0.5 * (fractal->new_zoom);
+		fractal->x_shift += (0.5 * fractal->new_zoom);
 	else if (*keycode == 125)
-		fractal->y_shift_value -= 0.5 * (fractal->new_zoom);
+		fractal->y_shift -= (0.5 * fractal->new_zoom);
 	else if (*keycode == 126)
-		fractal->y_shift_value += 0.5 * (fractal->new_zoom);
+		fractal->y_shift += (0.5 * fractal->new_zoom);
 	else if (*keycode == 24)
 		fractal->max_iter += 10;
 	else if (*keycode == 27)
@@ -75,24 +75,17 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 		else
 			zoom_factor = 1.1;
 		fractal->new_zoom *= zoom_factor;
-		mouse_x = (map(x, -2, 2, WIDTH) * fractal->new_zoom)
-			+ fractal->x_shift_value;
-		mouse_y = (map(y, 2, -2, LENGTH) * fractal->new_zoom)
-			+ fractal->y_shift_value;
-		fractal->x_shift_value = mouse_x - ((mouse_x - fractal->x_shift_value)
-				* zoom_factor);
-		fractal->y_shift_value = mouse_y - ((mouse_y - fractal->y_shift_value)
-				* zoom_factor);
+		mouse_x = (map(x, -2, 2, WIDTH) * fractal->new_zoom);
+		mouse_y = (map(y, 2, -2, LENGTH) * fractal->new_zoom);
+		/*
+			Difference between the previous and new mouse positions after zooming
+			and scaling this difference based on the zoom factor.
+		*/
+		fractal->x_shift = (mouse_x + fractal->x_shift)
+			- (mouse_x * zoom_factor);
+		fractal->y_shift = (mouse_y + fractal->y_shift)
+			- (mouse_y * zoom_factor);
 		render_fractal(fractal, fractal->argv);
 	}
 	return (0);
 }
-	// if (button == 1)
-	// {
-	// 	mlx_clear_window(fractal->mlx, fractal->win);
-	// 	render_fractal(fractal, fractal->argv);
-	// 	mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 10, YELLOW,
-	// 		ft_strjoin("x :", ft_itoa(x)));
-	// 	mlx_string_put(fractal->mlx, fractal->win, 0, LENGTH / 7, YELLOW,
-	// 		ft_strjoin("y :", ft_itoa(y)));
-	// }
