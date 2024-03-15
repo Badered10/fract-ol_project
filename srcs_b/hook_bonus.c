@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/14 18:00:04 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:25:13 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,8 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 		else
 			zoom_factor = 1.1;
 		fractal->new_zoom *= zoom_factor;
-		mouse_x = (map(x, -2, 2, WIDTH) * fractal->new_zoom);
-		mouse_y = (map(y, 2, -2, LENGTH) * fractal->new_zoom);
-		/*
-			Difference between the previous and new mouse positions after zooming
-			and scaling this difference based on the zoom factor.
-		*/
+		mouse_x = map(x, -2, 2, WIDTH) * fractal->new_zoom;
+		mouse_y = map(y, 2, -2, LENGTH) * fractal->new_zoom;
 		fractal->x_shift = (mouse_x + fractal->x_shift)
 			- (mouse_x * zoom_factor);
 		fractal->y_shift = (mouse_y + fractal->y_shift)
