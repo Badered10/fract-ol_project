@@ -6,13 +6,13 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:35:34 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/12 18:16:38 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 22:31:42 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
 
-void	render_fractal(t_fractal *f, char **argv)
+void	render_fractal(t_fractal *f)
 {
 	char	*iter;
 	char	*merged;
@@ -20,16 +20,13 @@ void	render_fractal(t_fractal *f, char **argv)
 	iter = ft_itoa(f->max_iter);
 	merged = ft_strjoin("iterations: ", iter);
 	mlx_clear_window(f->mlx, f->win);
-	f->img.img = mlx_new_image(f->mlx, WIDTH + 1, LENGTH + 1);
-	f->img.addr = mlx_get_data_addr(f->img.img, &f->img.bpp,
-			&f->img.line_len, &f->img.endian);
 	f->y = 0;
 	while (f->y <= LENGTH)
 	{
 		f->x = 0;
 		while (f->x <= WIDTH)
 		{
-			check_pixel(f, &f->img, argv);
+			check_pixel(f, &f->img);
 			(f->x)++;
 		}
 		(f->y)++;

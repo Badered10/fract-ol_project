@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:36:57 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/09 23:43:19 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 20:02:12 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# define SYNTAX_ERR 3
 
 int					ft_atoi(const char *str);
 void				ft_bzero(void *b, size_t n);

@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/12 18:16:34 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:08:01 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ int	main(int argc, char **argv) // usage : ./fractol name x y
 	fractal.win = mlx_new_window(fractal.mlx, WIDTH, LENGTH, fractal.name);
 	if (!fractal.win)
 		clean_close(&fractal, NEW_WIN_FAIL);
-	render_fractal(&fractal, argv);
+	fractal.img.img = mlx_new_image(fractal.mlx, WIDTH + 1, LENGTH + 1);
+	fractal.img.addr = mlx_get_data_addr(fractal.img.img, &fractal.img.bpp,
+			&fractal.img.line_len, &fractal.img.endian);
+	render_fractal(&fractal);
 	mlx_mouse_hook(fractal.win, mouse_hook, &fractal);
 	mlx_key_hook(fractal.win, key_hook, &fractal);
 	mlx_hook(fractal.win, 17, 0, destroy_notify, &fractal);

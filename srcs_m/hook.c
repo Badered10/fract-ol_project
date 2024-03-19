@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/18 00:47:25 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:01:15 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	key_hook(int keycode, t_fractal *fractal)
 {
 	hundlle_keys(&keycode, fractal);
 	if ((keycode >= 12 && keycode <= 13) || keycode == 2 || keycode == 1)
-		render_fractal(fractal, fractal->argv);
+		render_fractal(fractal);
 	return (0);
 }
 
@@ -59,12 +59,12 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 		else
 			zoom_factor = 1.1;
 		fractal->new_zoom *= zoom_factor;
-		render_fractal(fractal, fractal->argv);
+		render_fractal(fractal);
 	}
 	if (button == 1)
 	{
 		mlx_clear_window(fractal->mlx, fractal->win);
-		render_fractal(fractal, fractal->argv);
+		render_fractal(fractal);
 	}
 	return (0);
 }

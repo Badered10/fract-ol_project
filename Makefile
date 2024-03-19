@@ -6,7 +6,7 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:09:19 by baouragh          #+#    #+#              #
-#    Updated: 2024/03/13 17:23:25 by baouragh         ###   ########.fr        #
+#    Updated: 2024/03/19 21:56:38 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,5 +50,5 @@ clear:
 
 m: all clean clear
 b: fclean bonus clean clear
-.PHONY: clean clear
+.PHONY: clean clearm
 .SECONDARY: $(OBJS_M)

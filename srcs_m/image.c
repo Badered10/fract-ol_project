@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:34:35 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/12 22:13:25 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:46:26 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ void	pixel_image_put(t_img *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	check_pixel(t_fractal *fractal, t_img *img, char **argv)
+void	check_pixel(t_fractal *f, t_img *img)
 {
-	which_fractal(fractal, argv);
-	while (pow(fractal->z.x, 2) + pow(fractal->z.y, 2) <= 4
-		&& fractal->iter < fractal->max_iter)
+	which_fractal(f);
+	while ((f->z.x * f->z.x) + (f->z.y * f->z.y) <= 4
+		&& f->iter < f->max_iter)
 	{
-		fractal->x_tmp = pow(fractal->z.x, 2) - pow(fractal->z.y, 2);
-		fractal->z.y = 2 * fractal->z.x * (fractal->z.y) + fractal->c.y;
-		fractal->z.x = fractal->x_tmp + fractal->c.x;
-		(fractal->iter)++;
+		f->x_tmp = (f->z.x * f->z.x) - (f->z.y * f->z.y);
+		f->z.y = (2 * f->z.x * f->z.y) + f->c.y;
+		f->z.x = f->x_tmp + f->c.x;
+		(f->iter)++;
 	}
-	if (fractal->iter < fractal->max_iter)
+	if (f->iter < f->max_iter)
 	{
-		fractal->color = map(fractal->iter, BLACK, WHITE, fractal->max_iter);
-		pixel_image_put(img, fractal->x, fractal->y, fractal->color);
+		f->color = map(f->iter, BLACK, WHITE, f->max_iter);
+		pixel_image_put(img, f->x, f->y, f->color);
 	}
 	else
-		pixel_image_put(img, fractal->x, fractal->y, fractal->set_color);
-	fractal->iter = -1;
+		pixel_image_put(img, f->x, f->y, f->set_color);
+	f->iter = -1;
 }

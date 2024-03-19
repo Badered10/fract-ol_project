@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/17 17:58:12 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:00:08 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 */
 # define MLX_FAIL 1
 # define NEW_WIN_FAIL 2
-# define SYNTAX_ERR 3
 /*
     y
 */
@@ -30,7 +29,11 @@
 /*
     x
 */
-# define WIDTH 850 // 100
+# define WIDTH 800 // 100
+
+# define ALI 0x100101 
+# define ALI2 0x222324
+# define ALI3 0x008000
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00
@@ -97,19 +100,17 @@ typedef struct s_fractal
 	double		x_shift;
 	double		y_shift;
 	double		new_zoom;
-	double		x_zoom;
-	double		y_zoom;
 }				t_fractal;
 
-void	which_fractal(t_fractal *fractal, char **argv);
+void	which_fractal(t_fractal *fractal);
 int		key_hook(int keycode, t_fractal *fractal);
 int		mouse_hook(int button, int x, int y, t_fractal *fractal);
 int		destroy_notify(t_fractal *fractal);
 void	pixel_image_put(t_img *img, int x, int y, int color);
-void	check_pixel(t_fractal *fractal, t_img *img, char **argv);
-void	syntax_err(int id, char *arg, t_fractal *fractal);
+void	check_pixel(t_fractal *fractal, t_img *img);
+void	syntax_err(t_fractal *fractal);
 int		check_arg_set(char **argv, int argc, t_fractal *fractal);
-void	render_fractal(t_fractal *fractal, char **argv);
+void	render_fractal(t_fractal *fractal);
 void	clean_close(t_fractal *fractal, int id);
 void	fractal_init(t_fractal *fractal, char **argv, int argc);
 double	map(double unsacled_num, double new_min, double new_max,

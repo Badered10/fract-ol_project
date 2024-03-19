@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/18 00:43:44 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:28:00 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	key_hook(int keycode, t_fractal *fractal)
 	else if ((keycode >= 123 && keycode <= 126) || keycode == 24
 		|| keycode == 27 || (keycode >= 12 && keycode <= 13) || keycode == 2
 		|| keycode == 1)
-		render_fractal(fractal, fractal->argv);
+		render_fractal(fractal);
 	return (0);
 }
 
@@ -71,15 +71,17 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 	if (button == 4 || button == 5)
 	{
 		if (button == 5)
-			zoom_factor = 0.9; // 3
+			zoom_factor = 0.9;
 		else
 			zoom_factor = 1.1;
 		fractal->new_zoom *= zoom_factor;
 		mouse_x = map(x, -2, 2, WIDTH) * fractal->new_zoom;
 		mouse_y = map(y, 2, -2, LENGTH) * fractal->new_zoom;
-		fractal->x_shift = (fractal->x_shift + mouse_x) - (mouse_x * zoom_factor);
-		fractal->y_shift = (fractal->y_shift + mouse_y) - (mouse_y * zoom_factor);
-		render_fractal(fractal, fractal->argv);
+		fractal->x_shift = (fractal->x_shift + mouse_x)
+			- (mouse_x * zoom_factor);
+		fractal->y_shift = (fractal->y_shift + mouse_y)
+			- (mouse_y * zoom_factor);
+		render_fractal(fractal);
 	}
 	return (0);
 }
