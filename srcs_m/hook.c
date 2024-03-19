@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 21:01:15 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:28:50 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 			zoom_factor = 0.9;
 		else
 			zoom_factor = 1.1;
-		fractal->new_zoom *= zoom_factor;
+		fractal->zoom_level *= zoom_factor;
 		render_fractal(fractal);
 	}
 	if (button == 1)

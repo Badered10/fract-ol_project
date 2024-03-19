@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 21:28:00 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:28:50 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void	hundlle_keys(int *keycode, t_fractal *fractal)
 	if (*keycode == 53)
 		clean_close(fractal, 0);
 	else if (*keycode == 123)
-		fractal->x_shift -= (0.5 * fractal->new_zoom);
+		fractal->x_shift -= (0.5 * fractal->zoom_level);
 	else if (*keycode == 124)
-		fractal->x_shift += (0.5 * fractal->new_zoom);
+		fractal->x_shift += (0.5 * fractal->zoom_level);
 	else if (*keycode == 125)
-		fractal->y_shift -= (0.5 * fractal->new_zoom);
+		fractal->y_shift -= (0.5 * fractal->zoom_level);
 	else if (*keycode == 126)
-		fractal->y_shift += (0.5 * fractal->new_zoom);
+		fractal->y_shift += (0.5 * fractal->zoom_level);
 	else if (*keycode == 24)
 		fractal->max_iter += 10;
 	else if (*keycode == 27)
@@ -74,9 +74,9 @@ int	mouse_hook(int button, int x, int y, t_fractal *fractal)
 			zoom_factor = 0.9;
 		else
 			zoom_factor = 1.1;
-		fractal->new_zoom *= zoom_factor;
-		mouse_x = map(x, -2, 2, WIDTH) * fractal->new_zoom;
-		mouse_y = map(y, 2, -2, LENGTH) * fractal->new_zoom;
+		fractal->zoom_level *= zoom_factor;
+		mouse_x = map(x, -2, 2, WIDTH) * fractal->zoom_level;
+		mouse_y = map(y, 2, -2, LENGTH) * fractal->zoom_level;
 		fractal->x_shift = (fractal->x_shift + mouse_x)
 			- (mouse_x * zoom_factor);
 		fractal->y_shift = (fractal->y_shift + mouse_y)
