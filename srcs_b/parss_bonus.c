@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:38:32 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 21:30:07 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:47:56 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	syntax_err(t_fractal *fractal)
 {
 	ft_printf("\t[Help Menu]\nSyntax must be : ./fractol first_letter");
 	ft_printf("_name\nIn julia case you must enter x and y after 'J'\t");
-	ft_printf("example: ./fractol J 0 0.75\n");
+	ft_printf("example: ./fractol_bonus J 0 0.75\n");
 	ft_printf("Supported fracts:\nM --> Mendlebort Set\nJ --> Julia Set\n");
 	ft_printf("T --> Tricron Set\nB --> Burning ship Set\n");
 	clean_close(fractal, 0);

@@ -6,11 +6,10 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:40:37 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 23:08:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:31:53 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Julia , Mandelbrot
 #include "../headers/fractol.h"
 
 int	main(int argc, char **argv) // usage : ./fractol name x y

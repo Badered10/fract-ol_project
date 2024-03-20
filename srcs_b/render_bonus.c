@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:35:34 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 23:01:56 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:32:08 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	render_fractal(t_fractal *f)
 
 	iter = ft_itoa(f->max_iter);
 	merged = ft_strjoin("iterations: ", iter);
+	mlx_clear_window(f->mlx, f->win);
 	f->y = 0;
 	while (f->y <= LENGTH)
 	{
