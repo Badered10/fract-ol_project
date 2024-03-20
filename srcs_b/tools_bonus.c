@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:33:11 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 23:28:50 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:59:21 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	clean_close(t_fractal *fractal, int id)
 			mlx_clear_window(fractal->mlx, fractal->win);
 			mlx_destroy_window(fractal->mlx, fractal->win);
 		}
-		system("leaks fractol");
 		exit(id);
 	}
 	else

@@ -6,15 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/19 23:28:50 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/20 22:59:43 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/fractol.h"
-
-/*
-	x left 123 , x right 124 , y down 125 ,y up 126
-*/
 
 static void	hundlle_keys(int *keycode, t_fractal *fractal)
 {
