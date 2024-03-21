@@ -23,7 +23,6 @@ void	clean_close(t_fractal *fractal, int id)
 			mlx_clear_window(fractal->mlx, fractal->win);
 			mlx_destroy_window(fractal->mlx, fractal->win);
 		}
-		system("leaks fractol");
 		exit(id);
 	}
 	else
