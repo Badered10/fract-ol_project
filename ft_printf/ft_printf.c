@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:09:06 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 21:18:05 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/23 17:59:15 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	ft_printf(const char *string, ...)
 	char	*ptr;
 	char	*save_m;
 
-	if (!string)
-		return (-1);
 	save_m = NULL;
 	ptr = (char *)string;
 	t.count = 0;

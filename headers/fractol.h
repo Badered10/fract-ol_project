@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 09:24:48 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/20 22:30:48 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/23 22:39:30 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@
 */
 # define WIDTH 800 // 100
 
-# define ALI 0x100101 
-# define ALI2 0x222324
-# define ALI3 0x008000
+# define SP 0x100101 
+# define SP1 0x222324
+# define SP2 0x008000
 
 # define RED 0xFF0000
 # define GREEN 0x00FF00

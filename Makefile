@@ -6,7 +6,7 @@
 #    By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/19 15:09:19 by baouragh          #+#    #+#              #
-#    Updated: 2024/03/21 23:20:39 by baouragh         ###   ########.fr        #
+#    Updated: 2024/03/23 01:02:20 by baouragh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,11 @@ SRCS_B = srcs_b/main_bonus.c srcs_b/fractals_bonus.c srcs_b/hook_bonus.c srcs_b/
 OBJS_M = $(SRCS_M:.c=.o)
 OBJS_B = $(SRCS_B:.c=.o)
 
-LIBS =  ft_printf/libftprintf.a
+LIBS = ft_printf/libftprintf.a
 NAME = fractol
 NAME_BONUS = fractol_bonus
 
 all: $(NAME)
-
 $(NAME): $(LIBS) $(OBJS_M)
 	@$(CC) $(CFLAGS) $(MFLAGS) $(OBJS_M) $(LIBS) -o $(NAME)
 

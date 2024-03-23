@@ -6,7 +6,7 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 15:36:05 by baouragh          #+#    #+#             */
-/*   Updated: 2024/03/20 22:59:30 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/23 21:27:42 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	hundlle_keys(int *keycode, t_fractal *fractal)
 int	key_hook(int keycode, t_fractal *fractal)
 {
 	hundlle_keys(&keycode, fractal);
-	if (fractal->max_iter == 10)
-		fractal->max_iter = 20;
+	if (fractal->max_iter == 40)
+		fractal->max_iter = 50;
 	else if ((keycode >= 123 && keycode <= 126) || keycode == 24
 		|| keycode == 27 || (keycode >= 12 && keycode <= 13) || keycode == 2
 		|| keycode == 1)

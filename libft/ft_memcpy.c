@@ -6,13 +6,11 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 17:31:16 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 21:33:10 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/23 18:00:19 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
-#include <stdio.h>
-#include <string.h>
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {

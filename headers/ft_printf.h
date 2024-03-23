@@ -6,19 +6,19 @@
 /*   By: baouragh <baouragh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:09:45 by baouragh          #+#    #+#             */
-/*   Updated: 2024/02/26 21:27:01 by baouragh         ###   ########.fr       */
+/*   Updated: 2024/03/23 01:27:15 by baouragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "libft.h"
+# include "../headers/libft.h"
 # include <stdarg.h>
 # include <stddef.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 typedef struct t_flags
 {
@@ -32,12 +32,12 @@ typedef struct t_flags
 	int				len;
 	int				tmp;
 	int				stmp;
-	int				plus;
-	int				space;
-	int				mince;
-	int				zero;
-	int				point;
-	int				hashtag;
+	bool			plus;
+	bool			space;
+	bool			mince;
+	bool			zero;
+	bool			point;
+	bool			hashtag;
 }	t_f;
 
 int					ft_printf(const char *string, ...);
